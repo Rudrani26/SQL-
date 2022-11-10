@@ -1,0 +1,35 @@
+create procedure curspro()
+begin
+DECLARE done int(1) DEFAULT 0;
+DECLARE cursname varchar(50);
+DECLARE cursmarks int(5);
+DECLARE curs1 CURSOR FOR select name,marks from practice;
+DECLARE CONTINUE HANDLER FOR NOT FOUND set done = 1;
+open curs1;
+cursloop : LOOP
+fetch curs1 INTO cursname,cursmarks;
+if done = 1 THEN
+leave cursloop;
+end if;
+select cursname,cursmarks;
+end loop cursloop;
+close curs1; 
+end;
+
+create procedure curspro2()
+BEGIN
+DECLARE DONE INT(1) DEFAULT 0;
+DECLARE CURSID VARCHAR(50);
+DECLARE CURSCITY VARCHAR(50);
+DECLARE CURS2 CURSOR FOR SELECT ID,CITY FROM PRACTICE;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET DONE = 1;
+OPEN CURS2;
+LOOP2 : LOOP
+FETCH CURS2 INTO CURSID,CURSCITY;
+IF DONE = 1 THEN
+LEAVE LOOP2;
+END IF;
+SELECT CURSID,CURSCITY;
+END LOOP LOOP2;
+CLOSE CURS2;
+END;
