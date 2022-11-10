@@ -1,0 +1,17 @@
+create trigger trig1
+     before
+     insert on practice
+     for each row
+     begin
+     set new.name = upper(new.name);
+     set new.city = upper(new.city);
+     end;
+
+create trigger trig1
+     after
+     update on practice
+     for each row
+     begin
+     insert into practice2 values (old.ID,new.ID,old.name,new.name,old.city,new.city,old.marks,new.marks);
+     end;
+     ##
