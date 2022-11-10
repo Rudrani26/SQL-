@@ -1,0 +1,9 @@
+create procedure my_pro(IN client_no int)
+begin
+select * from Client_master LIMIT client_no ;
+end;
+
+create procedure my_pro1(OUT client_no int)
+begin
+select COUNT(*) INTO client_no FROM Client_master;
+end;
